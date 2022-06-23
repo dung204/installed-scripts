@@ -35,8 +35,8 @@ $env:PATH += ";$GitBinPath"
 refreshenv
 
 # Set name and email for git so that git can commit, push, pull, ...
-git config user.name dung204
-git config user.email acezombiev4@gmail.com
+git config --global user.name dung204
+git config --global user.email acezombiev4@gmail.com
 
 # --- Install Unikey
 Write-Host "Installing Unikey ..." -Foreground "Green"
