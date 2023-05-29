@@ -20,15 +20,16 @@
 
 ## Packages to be installed
 
-- Chocolatey: a package manager for installing other packages
+- Chocolatey: a package manager for installing other packages **(Windows only)**
 - Unikey: a Vietnamese input method
 - Git: a version control system
 - Google Chrome: a web browser
 - NodeJS: a JavaScript runtime environment
-- yarn: a node package manager
+- yarn: a node package manager **(in Windows, may require a shell restart to use)**
 - OpenJDK (java): an open-source Java Developer Kit & Runtime
-- MinGW: a collection of GNU libraries for windows
-- WSL: Windows Subsystem for Linux (required a restart after installation, and Ubuntu is also installed)
+- MinGW: a collection of GNU libraries for Windows **(Windows only)**
+- WSL: Windows Subsystem for Linux **(required a restart after installation, and Ubuntu is also installed, Windows only)**
+- Python interpreter
 
 ## Installation
 
