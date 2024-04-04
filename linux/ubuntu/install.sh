@@ -181,9 +181,9 @@ else
 fi
 
 # Install ibus-bamboo
-sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo
-sudo apt-get update
-sudo apt-get install ibus ibus-bamboo --install-recommends
+sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
+sudo apt-get update > /dev/null 2>&1
+sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
 ibus exit > /dev/null 2>&1
 sleep 1
 ibus-daemon -d > /dev/null 2>&1
