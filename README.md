@@ -6,19 +6,17 @@
 
 ## Table of Contents
 
-- [Packages to be installed](#packages)
-- [Installation](#installation)
-  - [Windows](#windows-install)
-  - [Linux](#linux-install)
-  - [MacOS](#macos-install)
-- [Todos](#todos)
-  - [Windows](#windows-todos)
-  - [Linux](#linux-todos)
-  - [MacOS](#macos-todos)
+- [1. Packages to be installed](#1-packages-to-be-installed)
+- [2. Installation](#2-installation)
+  - [2.1. Windows](#21-windows)
+  - [2.2. Linux](#22-linux)
+  - [2.3 MacOS](#23-macos)
+- [3. Todos](#3-todos)
+  - [3.1. Windows](#31-windows)
+  - [3.2. Linux](#32-linux)
+  - [3.3. MacOS](#33-macos)
 
-<a id="packages"></a>
-
-## Packages to be installed
+## 1. Packages to be installed
 
 - Chocolatey: a package manager for installing other packages **(Windows only)**
 - Unikey: a Vietnamese input method
@@ -31,21 +29,19 @@
 - WSL: Windows Subsystem for Linux **(required a restart after installation, and Ubuntu is also installed, Windows only)**
 - Python interpreter
 
-## Installation
+## 2. Installation
 
-<a id="windows-install"></a>
-
-### Windows
+### 2.1. Windows
 
 Open Command Prompt or Powershell **<ins>as Administrator</ins>**, and run one of these commands:
 
-cmd.exe:
+Using Command Prompt (`cmd.exe`):
 
 ```bat
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/dung204/installed-scripts/main/windows/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ```
 
-powershell.exe:
+Using Powershell (`powershell.exe`):
 
 ```ps1
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/dung204/installed-scripts/main/windows/install.ps1'))
@@ -53,23 +49,29 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 **Warning**: Downloading the script individually or cloning this repo is not recommended since it's easier to use below commands to run the script under administrative privileges.
 
-<a id="linux-install"></a>
+### 2. Linux
 
-### Linux
+#### 2.1. Ubuntu
+
+Using `wget`:
+
+```bash
+wget -O - https://raw.githubusercontent.com/dung204/installed-scripts/main/linux/ubuntu/install.sh | bash
+```
+
+Using `curl`:
+
+```bash
+curl -s https://raw.githubusercontent.com/dung204/installed-scripts/main/linux/ubuntu/install.sh | bash
+```
+
+### 3. MacOS
 
 Working in progress ...
 
-<a id="macos-install"></a>
+## 4. Todos
 
-### MacOS
-
-Working in progress ...
-
-## Todos
-
-<a id="windows-todos"></a>
-
-### Windows
+### 4.1. Windows
 
 - Run Windows Update and update all packages to the latest version
 - Set Google Chrome as default browser
@@ -79,14 +81,10 @@ Working in progress ...
 - Run WSL to install dependencies for development
 - To be continued ...
 
-<a id="linux-todos"></a>
-
-### Linux
+### 4.2. Linux
 
 Working in progress ...
 
-<a id="macos-todos"></a>
-
-### MacOS
+### 4.3. MacOS
 
 Working in progress
