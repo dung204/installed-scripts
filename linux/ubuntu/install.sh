@@ -232,6 +232,7 @@ printf "export QT4_IM_MODULE=xim\n" >> ~/.bashrc
 printf "export CLUTTER_IM_MODULE=xim\n" >> ~/.bashrc
 sleep 1
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
+sleep 1
 
 # Check ibus-bamboo is installed
 ibus list-engine | grep Bamboo > /dev/null 2>&1
