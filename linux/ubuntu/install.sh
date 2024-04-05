@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Check if this script is running as root
-if [ "$EUID" -ne 0 ]
-  then printf "\u001b[31mPlease run as root\u001b[37m\n"
-  exit
-fi
-
 clear
 
 sudo sleep 3
