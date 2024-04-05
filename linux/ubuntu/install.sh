@@ -273,6 +273,7 @@ fi
 printf "Installing Visual Studio Code... "
 wget -O vscode.deb https://update.code.visualstudio.com/latest/linux-deb-x64/stable > /dev/null 2>&1
 sudo dpkg -i vscode.deb > /dev/null 2>&1
+rm vscode.deb
 
 # Check Visual Studio Code is installed
 code --version > /dev/null 2>&1
