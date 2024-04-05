@@ -208,30 +208,19 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
-# Install dbus-x11
-printf "Installing dbus-x11... "
-sudo apt-get install dbus-x11 -y > /dev/null 2>&1
-
-# Check dbus-x11 is installed
-dpkg -l | grep dbus-x11 > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-  printf "\u001b[32mSUCCESS\u001b[37m\n"
-else
-  printf "\u001b[31mFAILED\u001b[37m\n"
-fi
-
-
 # Install ibus-bamboo
 printf "Installing ibus-bamboo... "
 sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
 ibus restart > /dev/null 2>&1
+sleep 1
 echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
 echo "export QT_IM_MODULE=xim" >> ~/.bashrc
 echo "export XMODIFIERS=@im=xim" >> ~/.bashrc
 echo "export QT4_IM_MODULE=xim" >> ~/.bashrc
 echo "export CLUTTER_IM_MODULE=xim" >> ~/.bashrc
+sleep 1
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 # Check ibus-bamboo is installed
