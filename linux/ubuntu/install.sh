@@ -214,28 +214,15 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
-# Install ibus-bamboo
-printf "Installing ibus-bamboo... "
-sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
-sudo apt-get update > /dev/null 2>&1
-sudo apt-get install ibus-bamboo -y > /dev/null 2>&1
-ibus stop > /dev/null 2>&1
-sleep 1
-ibus-daemon -d > /dev/null 2>&1
-sleep 1
+# Install ibus-unikey
+printf "Installing ibus-unikey... "
+sudo apt-get install ibus-unikey -y > /dev/null 2>&1
 ibus restart > /dev/null 2>&1
 sleep 1
-printf "export GTK_IM_MODULE=ibus\n" >> ~/.bashrc
-printf "export QT_IM_MODULE=xim\n" >> ~/.bashrc
-printf "export XMODIFIERS=@im=xim\n" >> ~/.bashrc
-printf "export QT4_IM_MODULE=xim\n" >> ~/.bashrc
-printf "export CLUTTER_IM_MODULE=xim\n" >> ~/.bashrc
-sleep 1
-env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
-sleep 1
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Unikey')]" > /dev/null 2>&1
 
-# Check ibus-bamboo is installed
-ibus list-engine | grep Bamboo > /dev/null 2>&1
+# Check ibus-unikey is installed
+dpkg -l | grep ibus-unikey > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   printf "\u001b[32mSUCCESS\u001b[37m\n"
 else
