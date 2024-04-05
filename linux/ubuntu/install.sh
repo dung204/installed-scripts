@@ -226,6 +226,12 @@ export XMODIFIERS=@im=xim
 export QT4_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
 " >> ~/.bashrc
+. ~/.bashrc
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=xim
+export XMODIFIERS=@im=xim
+export QT4_IM_MODULE=xim
+export CLUTTER_IM_MODULE=xim
 
 # Check ibus-bamboo is installed
 ibus list-engine | grep Unikey > /dev/null 2>&1
