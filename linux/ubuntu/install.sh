@@ -290,4 +290,4 @@ printf "\u001b[32m=================================Installation completed succes
 # Logout to apply changes
 printf "Logging out to apply changes in 3 seconds... "
 sleep 3
-sudo -E -u $USER gnome-session-quit --no-prompt
+sudo -E -u $USER gnome-session-quit
