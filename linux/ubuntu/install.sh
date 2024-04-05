@@ -227,11 +227,6 @@ sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
 ibus restart > /dev/null 2>&1
-sleep 1
-ibus-daemon -d > /dev/null 2>&1
-sleep 1
-ibus restart > /dev/null 2>&1
-sleep 1
 printf "
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=xim
@@ -239,14 +234,6 @@ export XMODIFIERS=@im=xim
 export QT4_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
 " >> ~/.bashrc
-sleep 1
-. ~/.bashrc
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=xim
-export XMODIFIERS=@im=xim
-export QT4_IM_MODULE=xim
-export CLUTTER_IM_MODULE=xim
-sleep 1
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 # Check ibus-bamboo is installed
@@ -260,7 +247,7 @@ fi
 # Install VLC Media Player
 printf "Installing VLC Media Player... "
 sudo apt-get install vlc -y > /dev/null 2>&1
-
+sleep 1
 
 # Check VLC Media Player is installed
 vlc --version > /dev/null 2>&1
