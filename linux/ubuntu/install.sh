@@ -208,6 +208,18 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+# Install dbus-x11
+printf "Installing dbus-x11... "
+sudo apt-get install dbus-x11 -y > /dev/null 2>&1
+
+# Check dbus-x11 is installed
+dpkg -l | grep dbus-x11 > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  printf "\u001b[32mSUCCESS\u001b[37m\n"
+else
+  printf "\u001b[31mFAILED\u001b[37m\n"
+fi
+
 # Install ibus-bamboo
 printf "Installing ibus-bamboo... "
 sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
