@@ -28,6 +28,11 @@ printf "Repository Github URL: \u001b[34mhttps://github.com/dung204/installed-sc
 
 printf "OS: \u001b[31mUbuntu\u001b[37m\n"
 
+printf "\n\n"
+printf "============================================Starting installation============================================\n"
+
+sleep 1
+
 # apt update & apt upgrade (silently)
 printf "Retrieving latest (apt-get) package information... "
 sudo apt-get update > /dev/null 2>&1
@@ -39,6 +44,8 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+sleep 1
+
 printf "Upgrading apt-get packages... "
 sudo apt-get upgrade -y > /dev/null 2>&1
 
@@ -48,6 +55,8 @@ if [ $? -eq 0 ]; then
 else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
+
+sleep 1
 
 # Install git
 printf "Installing git... "
@@ -61,6 +70,8 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+sleep 1
+
 # Install curl
 printf "Installing curl... "
 sudo apt-get install curl -y > /dev/null 2>&1
@@ -72,6 +83,8 @@ if [ $? -eq 0 ]; then
 else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
+
+sleep 1
 
 # Install wget
 printf "Installing wget... "
@@ -85,6 +98,8 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+sleep 1
+
 # Install vim
 printf "Installing vim... "
 sudo apt-get install vim -y > /dev/null 2>&1
@@ -96,6 +111,8 @@ if [ $? -eq 0 ]; then
 else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
+
+sleep 1
 
 # Install htop
 printf "Installing htop... "
@@ -109,6 +126,8 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+sleep 1
+
 # Install python3
 printf "Installing python3... "
 sudo apt-get install python3 -y > /dev/null 2>&1
@@ -120,6 +139,8 @@ if [ $? -eq 0 ]; then
 else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
+
+sleep 1
 
 # Install openjdk-17 (Java 17)
 printf "Installing openjdk... "
@@ -133,10 +154,15 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+sleep 1
+
 # Install Node.js via nvm (Node Version Manager)
 printf "Installing Node.js via nvm... "
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash > /dev/null 2>&1
 source ~/.bashrc
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install --lts > /dev/null 2>&1
 
 # Check Node.js is installed
