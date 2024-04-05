@@ -56,13 +56,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 Using `wget`:
 
 ```bash
-sudo wget -O - https://raw.githubusercontent.com/dung204/installed-scripts/main/linux/ubuntu/install.sh | sudo bash
+wget -O - https://raw.githubusercontent.com/dung204/installed-scripts/main/linux/ubuntu/install.sh | bash
 ```
 
 Using `curl`:
 
 ```bash
-sudo curl -s https://raw.githubusercontent.com/dung204/installed-scripts/main/linux/ubuntu/install.sh | sudo bash
+curl -s https://raw.githubusercontent.com/dung204/installed-scripts/main/linux/ubuntu/install.sh | bash
 ```
 
 ### 3. MacOS
