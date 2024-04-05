@@ -228,7 +228,7 @@ export CLUTTER_IM_MODULE=xim
 " >> ~/.bashrc
 
 # Check ibus-bamboo is installed
-ibus list-engine | grep -q "Unikey" > /dev/null 2>&1
+ibus list-engine | grep Unikey > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   printf "\u001b[32mSUCCESS\u001b[37m\n"
 else
@@ -255,7 +255,7 @@ sudo dpkg -i chrome.deb > /dev/null 2>&1
 rm chrome.deb > /dev/null 2>&1
 
 # Check Google Chrome is installed
-dpkg -l | grep google-chrome-stable > /dev/null 2>&1
+dpkg -l | grep chrome > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   printf "\u001b[32mSUCCESS\u001b[37m\n"
 else
