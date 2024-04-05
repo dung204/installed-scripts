@@ -209,6 +209,7 @@ else
 fi
 
 # Install ibus-bamboo
+printf "Installing ibus-bamboo... "
 sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
@@ -234,7 +235,7 @@ export QT4_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
 
 # Check ibus-bamboo is installed
-ibus list-engine | grep Unikey > /dev/null 2>&1
+ibus list-engine | grep Bamboo > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   printf "\u001b[32mSUCCESS\u001b[37m\n"
 else
