@@ -227,11 +227,11 @@ sudo apt-get update > /dev/null 2>&1
 sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
 ibus restart > /dev/null 2>&1
 sleep 1
-echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
-echo "export QT_IM_MODULE=xim" >> ~/.bashrc
-echo "export XMODIFIERS=@im=xim" >> ~/.bashrc
-echo "export QT4_IM_MODULE=xim" >> ~/.bashrc
-echo "export CLUTTER_IM_MODULE=xim" >> ~/.bashrc
+printf "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+printf "export QT_IM_MODULE=xim" >> ~/.bashrc
+printf "export XMODIFIERS=@im=xim" >> ~/.bashrc
+printf "export QT4_IM_MODULE=xim" >> ~/.bashrc
+printf "export CLUTTER_IM_MODULE=xim" >> ~/.bashrc
 sleep 1
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
@@ -291,4 +291,4 @@ printf "\u001b[32m=================================Installation completed succes
 # Logout to apply changes
 printf "Logging out to apply changes in 3 seconds... "
 sleep 3
-sudo -E -u pandya gnome-session-quit --no-prompt
+sudo -E -u $USER gnome-session-quit --no-prompt
