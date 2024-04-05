@@ -227,13 +227,11 @@ sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
 ibus restart > /dev/null 2>&1
-printf "
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=xim
-export XMODIFIERS=@im=xim
-export QT4_IM_MODULE=xim
-export CLUTTER_IM_MODULE=xim
-" >> ~/.bashrc
+echo "export GTK_IM_MODULE=ibus" >> ~/.bashrc
+echo "export QT_IM_MODULE=xim" >> ~/.bashrc
+echo "export XMODIFIERS=@im=xim" >> ~/.bashrc
+echo "export QT4_IM_MODULE=xim" >> ~/.bashrc
+echo "export CLUTTER_IM_MODULE=xim" >> ~/.bashrc
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 # Check ibus-bamboo is installed
