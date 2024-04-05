@@ -226,13 +226,12 @@ printf "Installing ibus-bamboo... "
 sudo add-apt-repository --yes ppa:bamboo-engine/ibus-bamboo > /dev/null 2>&1
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get install ibus ibus-bamboo --install-recommends -y > /dev/null 2>&1
-ibus exit > /dev/null 2>&1
+ibus restart > /dev/null 2>&1
 sleep 1
 ibus-daemon -d > /dev/null 2>&1
 sleep 1
 ibus restart > /dev/null 2>&1
 sleep 1
-env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 printf "
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=xim
@@ -240,12 +239,15 @@ export XMODIFIERS=@im=xim
 export QT4_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
 " >> ~/.bashrc
+sleep 1
 . ~/.bashrc
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=xim
 export XMODIFIERS=@im=xim
 export QT4_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
+sleep 1
+env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 # Check ibus-bamboo is installed
 ibus list-engine | grep Bamboo > /dev/null 2>&1
