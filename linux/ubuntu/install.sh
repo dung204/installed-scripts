@@ -244,14 +244,14 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
-# Install Google Chrome
-printf "Installing Google Chrome... "
-wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb > /dev/null 2>&1
-sudo dpkg -i chrome.deb > /dev/null 2>&1
-rm chrome.deb > /dev/null 2>&1
+# Install Thorium Browser
+printf "Installing Thorium Browser... "
+wget -O thorium.deb https://github.com/Alex313031/thorium/releases/download/M122.0.6261.132/thorium-browser_122.0.6261.132_amd64.deb
+sudo dpkg -i thorium.deb > /dev/null 2>&1
+rm thorium.deb > /dev/null 2>&1
 
-# Check Google Chrome is installed
-dpkg -l | grep chrome > /dev/null 2>&1
+# Check Thorium Browser is installed
+dpkg -l | grep thorium-browser > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   printf "\u001b[32mSUCCESS\u001b[37m\n"
 else
@@ -272,6 +272,84 @@ else
   printf "\u001b[31mFAILED\u001b[37m\n"
 fi
 
+# Install zsh
+printf "Installing zsh... "
+sudo apt-get install zsh -y > /dev/null 2>&1
+sudo usermod --shell $(which zsh) $USER > /dev/null 2>&1
+
+# Check zsh is installed
+zsh --version > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  printf "\u001b[32mSUCCESS\u001b[37m\n"
+else
+  printf "\u001b[31mFAILED\u001b[37m\n"
+fi
+
+# Install Oh My Zsh
+printf "Installing Oh My Zsh... "
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null 2>&1
+
+# Check Oh My Zsh is installed
+ls -a ~ | grep .oh-my-zsh > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  printf "\u001b[32mSUCCESS\u001b[37m\n"
+else
+  printf "\u001b[31mFAILED\u001b[37m\n"
+fi
+
+# Install Powerlevel10k theme
+printf "Installing Powerlevel10k theme... "
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
+
+# Check Powerlevel10k theme is installed
+ls -a ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes | grep powerlevel10k > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  printf "\u001b[32mSUCCESS\u001b[37m\n"
+else
+  printf "\u001b[31mFAILED\u001b[37m\n"
+fi
+
+# Install FiraCode Nerd Font
+printf "Installing FiraCode Nerd Font... "
+sudo apt install unzip -y > /dev/null 2>&1
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/FiraCode.zip > /dev/null 2>&1
+unzip FiraCode.zip -d ~/.fonts/FiraCodeNerdFont > /dev/null 2>&1
+rm FiraCode.zip > /dev/null 2>&1
+fc-cache -f -v > /dev/null 2>&1
+
+# Check FiraCode Nerd Font is installed
+fc-list | grep FiraCode > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  printf "\u001b[32mSUCCESS\u001b[37m\n"
+else
+  printf "\u001b[31mFAILED\u001b[37m\n"
+fi
+
+# Retrieve dotfiles
+printf "Retrieving dotfiles... "
+git clone https://github.com/dung204/linux-dotfiles.git ~/linux-dotfiles > /dev/null 2>&1
+for filename in `find ~/linux-dotfiles/ -not -path '*/.git/*' -type f -printf '%f\n'`
+do
+  ln -sf ~/linux-dotfiles/$filename ~/$filename
+done
+
+# Check dotfiles are retrieved
+check = true
+for filename in `find ~/linux-dotfiles/ -not -path '*/.git/*' -type f -printf '%f\n'`
+do
+  if [ ! -f ~/$filename ]; then
+    check = false
+    break
+  fi
+done
+
+if [ $check = true ]; then
+  printf "\u001b[32mSUCCESS\u001b[37m\n"
+else
+  printf "\u001b[31mFAILED\u001b[37m\n"
+fi
+
+
 # Print finish message
 printf "\n\n"
 printf "\u001b[32m=================================Installation completed successfully==================================\u001b[37m\n"
@@ -279,4 +357,4 @@ printf "\u001b[32m=================================Installation completed succes
 # Logout to apply changes
 printf "Logging out to apply changes in 3 seconds... "
 sleep 3
-sudo -E -u $USER gnome-session-quit
+sudo -E -u $USER gnome-session-quit --no-prompt
